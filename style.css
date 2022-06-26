@@ -1,0 +1,279 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primaryColor: #818cf8;
+  --bgColor: #eef2ff;
+  --white: #fff;
+  --textColor: #1f2937;
+  --iconColour: #d1d5db;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: var(--bgColor);
+  color: var(--textColor);
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background: url("/assets/image/casual-life-3d-girl-sitting-on-floor-with-laptop-and-studying.png")
+    no-repeat;
+  background-size: contain;
+  background-position: bottom;
+}
+
+@media screen and (min-width: 768px) {
+  .app {
+    flex-direction: row;
+  }
+  .content {
+    order: 2;
+    padding: 2rem 5rem;
+    background-size: 50%;
+    background-position: bottom left;
+  }
+}
+
+/* ________________________Navbar________________________ */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.navbar__search {
+  width: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 2rem;
+  height: 40px;
+  border-radius: 30px;
+  padding: 0 1rem;
+  overflow: hidden;
+}
+
+.navbar__search-input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+}
+
+.navbar__search-icon {
+  font-size: 1.5rem;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #c2c2c2;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    padding: 0 2rem;
+  }
+  .navbar__search {
+    width: 70%;
+  }
+}
+
+/* ______________________Notes_________________________ */
+.notes__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.notes {
+  height: 160px;
+}
+
+.notes__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.notes__lists {
+  height: 100%;
+  margin-bottom: 1rem;
+  overflow-y: auto;
+}
+
+.notes__lists::-webkit-scrollbar {
+  display: none;
+}
+
+.notes__item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  height: 100px;
+}
+
+.notes__item--selected {
+  background-color: var(--primaryColor);
+  color: #fff;
+}
+
+.notes__item-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.notes__item-icon {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .notes__container {
+    flex-direction: row;
+    padding: 2rem;
+  }
+  .notes {
+    height: 500px;
+    /* width: 40%; */
+    /* flex: 1; */
+    min-width: 280px;
+  }
+}
+
+/* __________________________Notes Preview_______________ */
+.notes__preview {
+  background-color: #fff;
+  border-radius: 10px;
+  height: 45%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+}
+
+.note__date {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.note__title,
+.note__body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.note__title {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: none;
+  outline: none;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.note__body {
+  width: 100%;
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+}
+
+@media screen and (min-width: 768px) {
+  .notes__preview {
+    height: 100%;
+    width: 50%;
+    margin-left: 3rem;
+  }
+}
+
+/* ___________________________Sidebar_____________________ */
+.sidebar {
+  background-color: var(--primaryColor);
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  color: var(--bgColor);
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 30px 30px 0 0;
+}
+
+.sidebar__btn {
+  background-color: var(--bgColor);
+  border: none;
+  padding: 1rem;
+  border-radius: 10px;
+  color: var(--primaryColor);
+  cursor: pointer;
+  display: none;
+  width: 120px;
+  font-size: 2rem;
+}
+
+.sidebar__icon {
+  font-size: 3rem;
+  padding-right: 2rem;
+  cursor: pointer;
+}
+
+.add__note:hover {
+  opacity: 0.9;
+}
+
+@media screen and (min-width: 768px) {
+  .sidebar {
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 0 50px 50px 0;
+    padding: 3rem 2rem;
+  }
+  .sidebar__icon {
+    display: none;
+  }
+  .sidebar__btn {
+    display: block;
+  }
+  .sidebar__app-name {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+  }
+}
