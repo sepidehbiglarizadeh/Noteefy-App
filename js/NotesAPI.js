@@ -18,9 +18,6 @@ const notes = [
     updated: "2022-06-26T19:28:28.486Z",
   },
 ];
-
-// let now = new Date().toLocaleDateString('en-us', { month:"short", day:"numeric"});
-
 export default class NotesAPI {
   static getAllNotes() {
     const savedNotes = JSON.parse(localStorage.getItem("notes-app")) || [];
