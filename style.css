@@ -86,10 +86,8 @@ body {
 .navbar__search-icon {
   font-size: 1.5rem;
   height: 100%;
-  cursor: pointer;
   display: flex;
   align-items: center;
-  cursor: pointer;
   color: #c2c2c2;
 }
 
@@ -143,7 +141,6 @@ body {
   cursor: pointer;
   font-size: 1.2rem;
   height: 100px;
-  transition: all 0.3s ease-in-out;
 }
 
 .notes__item--selected {

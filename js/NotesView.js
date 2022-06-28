@@ -1,11 +1,13 @@
 export default class NotesView {
   constructor(root, handlers) {
     this.root = root;
-    const { onNoteAdd, onNoteEdit, onNoteSelect, onNoteDelete } = handlers;
+    const { onNoteAdd, onNoteEdit, onNoteSelect, onNoteDelete, getNotes } =
+      handlers;
     this.onNoteAdd = onNoteAdd;
     this.onNoteEdit = onNoteEdit;
     this.onNoteSelect = onNoteSelect;
     this.onNoteDelete = onNoteDelete;
+    this.getNotes = getNotes;
     this.root.innerHTML = `<section class="content">
         <nav class="navbar">
           <div class="navbar__search">
@@ -125,9 +127,14 @@ export default class NotesView {
         <span class="sidebar__app-version">V 0.1</span>
       </section>`;
 
-    const noteAddBtns = document.querySelectorAll(".add__note");
-    const inputTitle = document.querySelector(".note__title");
-    const inputBody = document.querySelector(".note__body");
+    const noteAddBtns = this.root.querySelectorAll(".add__note");
+    const inputTitle = this.root.querySelector(".note__title");
+    const inputBody = this.root.querySelector(".note__body");
+    const searchInput = this.root.querySelector(".navbar__search-input");
+    let filters = {
+      searchItem: "",
+    };
+    const notes = this.getNotes();
 
     noteAddBtns.forEach((btn) => {
       btn.addEventListener("click", () => this.onNoteAdd());
@@ -140,6 +147,12 @@ export default class NotesView {
         this.onNoteEdit(newTitle, newBody);
       });
     });
+
+    searchInput.addEventListener("input", (e) => {
+      filters.searchItem = e.target.value;
+      this.renderNotes(notes, filters);
+    });
+    // console.log(notes);
 
     this.updateNotePreviewVisibility(false);
   }
@@ -212,5 +225,19 @@ export default class NotesView {
     this.root.querySelector(".notes__preview").style.visibility = visible
       ? "visible"
       : "hidden";
+  }
+
+  renderNotes(_notes, _filters) {
+    const filteredNotes = _notes.filter((n) => {
+      return n.title.toLowerCase().includes(_filters.searchItem.toLowerCase());
+    });
+    console.log(filteredNotes);
+    this.root.querySelector(".notes__lists").innerHTML = "";
+
+    filteredNotes.forEach((n) => {
+      const { id, title, body, updated } = n;
+      const noteslist= this._creatListHTML(id,title,body,updated);
+      this.root.querySelector(".notes__lists").innerHTML+= noteslist;
+    });
   }
 }

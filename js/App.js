@@ -7,6 +7,7 @@ export default class App {
     this.activeNote = null;
     this.view = new NotesView(root, this._handlers());
     this._refreshNotes();
+    
   }
 
   _refreshNotes() {
@@ -28,6 +29,10 @@ export default class App {
   _setActiveNote(note){
     this.activeNote = note= note;
     this.view.updateActiveNote(note);
+  }
+
+  a(){
+    const bb= NotesAPI.getAllNotes()
   }
 
   _handlers() {
@@ -55,6 +60,10 @@ export default class App {
       onNoteDelete: (noteId) => {
         NotesAPI.deleteNotes(noteId);
         this._refreshNotes();
+      },
+      getNotes(){
+        const notes = NotesAPI.getAllNotes()
+        return notes;
       },
     };
   }
